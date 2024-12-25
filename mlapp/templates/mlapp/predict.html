@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Analysis</title>
+  <link rel="stylesheet" href="{% static 'mlapp/css/predict.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <main>
+      <h2>Your text was analyzed</h2>
+      <a href="{% url 'home' %}" class="try-again">Try another text</a>
+      <div class="results">
+        <h3>Results</h3>
+        <div class="circle">
+          {% if prediction == 1 %}
+            <p class="unhappy"> NEGATIVE SENTIMENT</p>
+            <p>This text is mostly composed of NEGATIVE sentiment.</p>
+          {% elif prediction == 2 %}
+            <p class="happy">POSITIVE SENTIMENT</p>
+            <p>This text is mostly composed of positive sentiment.</p>
+            {% elif prediction == 0 %}
+            <p class="neutral">NEUTRAL SENTIMENT</p>
+            <p>This text is mostly composed of neutral sentiment.</p>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <footer>
+    <p>
+      made by @dipu
+      Submitted on: {{ today_date }}
+    </p>
+  </footer>
+</body>
+
+</html>
